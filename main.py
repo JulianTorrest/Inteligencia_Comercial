@@ -1,4 +1,3 @@
-# main.py
 import streamlit as st
 import pandas as pd
 import requests
@@ -18,10 +17,8 @@ def get_csv_from_github(token, repo_path):
 def load_data():
     st.title("Visualizador de Archivos de Excel desde GitHub")
 
-    token = st.text_input("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")
-    if not token:
-        st.warning("Por favor, introduce tu token de GitHub.")
-        return
+    # Asumiendo que tienes un token fijo que se usará (es un riesgo de seguridad, no lo hagas en una aplicación real)
+    token = "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"
 
     file_options = {
         "CO-EX-ABONO-SALIDA.xlsx": "JulianTorrest/Inteligencia_Comercial/contents/Abonos/CO-EX-ABONO-SALIDA.xlsx",
@@ -31,13 +28,13 @@ def load_data():
         "CO-EX-ABONOS-MES.xlsx": "JulianTorrest/Inteligencia_Comercial/blob/main/Abonos/CO-EX-ABONOS-MES.xlsx",
     }
     
-    selected_file = st.selectbox("Selecciona el archivo que deseas visualizar", list(file_options.keys()))
-
-    if st.button("Cargar archivo"):
-        content = get_csv_from_github(token, file_options[selected_file])
+    for file_name, repo_path in file_options.items():
+        st.subheader(f"Datos de {file_name}")
+        content = get_csv_from_github(token, repo_path)
         if content:
             data = pd.read_excel(content, engine='openpyxl')
             st.write(data)
 
 if __name__ == "__main__":
     load_data()
+
