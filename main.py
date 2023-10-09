@@ -15,10 +15,10 @@ def get_csv_from_github(token, repo_path):
         return None
 
 def load_data():
-    st.title("Visualizador de Archivos de Excel desde GitHub")
+    st.title("Inteligencia Comercial, sector Abonos. Exportación del año 2023.")
 
-    # Asumiendo que tienes un token fijo que se usará (es un riesgo de seguridad, no lo hagas en una aplicación real)
-    token = "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"
+    # Introduce tu token válido aquí o considera una forma segura de almacenar y recuperar el token.
+    token = "KhjNhbb4WPFfCbLlKNAo5HAtv55pqL3PlFCc"
 
     file_options = {
         "CO-EX-ABONO-SALIDA.xlsx": "JulianTorrest/Inteligencia_Comercial/contents/Abonos/CO-EX-ABONO-SALIDA.xlsx",
@@ -37,4 +37,3 @@ def load_data():
 
 if __name__ == "__main__":
     load_data()
-
