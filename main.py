@@ -18,7 +18,7 @@ def get_csv_from_github(token, repo_path):
 def load_data():
     st.title("Visualizador de Archivos de Excel desde GitHub")
 
-    token = st.text_input("Introduce tu token de GitHub:", type="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")
+    token = st.text_input("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")
     if not token:
         st.warning("Por favor, introduce tu token de GitHub.")
         return
