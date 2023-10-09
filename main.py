@@ -18,7 +18,7 @@ def load_data():
     st.title("Inteligencia Comercial, sector Abonos. Exportación del año 2023.")
 
     # Introduce tu token válido aquí o considera una forma segura de almacenar y recuperar el token.
-    token = "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"
+    token = "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"
 
     file_options = {
         "CO-EX-ABONO-SALIDA.xlsx": "JulianTorrest/Inteligencia_Comercial/contents/Abonos/CO-EX-ABONO-SALIDA.xlsx",
