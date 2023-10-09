@@ -1,40 +1,52 @@
 import streamlit as st
 import pandas as pd
 import requests
+from io import StringIO
 
+# Función para obtener datos CSV de GitHub
 def get_csv_from_github(token, repo_path):
-    headers = {
-        "Authorization": f"token {token}",
-        "Accept": "application/vnd.github.v3.raw"
-    }
-    response = requests.get(f"https://api.github.com/repos/{repo_path}", headers=headers)
+    headers = {"Authorization": f"token {token}"}
+    url = f"https://raw.githubusercontent.com/{repo_path}"
+    response = requests.get(url, headers=headers)
+    
     if response.status_code == 200:
-        return response.content
+        return pd.read_csv(StringIO(response.text))
     else:
-        st.error(f"Error al obtener el archivo: {response.text}")
+        st.error(f"Error obteniendo el archivo {repo_path}. Código de error: {response.status_code}")
         return None
 
-def load_data():
-    st.title("Inteligencia Comercial, sector Abonos. Exportación del año 2023.")
+# Función para cargar todos los datos
+def load_data(token):
+    base_path = "JulianTorrest/Inteligencia_Comercial/main/Abonos"
+    files = [
+        "CO-EX-ABONO-SALIDA.csv",
+        "CO-EX-ABONO.csv",
+        "CO-EX-ABONOS-DETALLE.csv",
+        "CO-EX-ABONOS-EMPRESAS.csv",
+        "CO-EX-ABONOS-MES.csv"
+    ]
 
-    # Usa una forma segura para almacenar y recuperar el token en lugar de codificarlo directamente.
-    token = "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"
+    data = {}
+    for file in files:
+        data[file] = get_csv_from_github(token, f"{base_path}/{file}")
+    return data
 
-    file_options = {
-        "CO-EX-ABONO-SALIDA.xlsx": "JulianTorrest/Inteligencia_Comercial/Abonos/CO-EX-ABONO-SALIDA.xlsx",
-        "CO-EX-ABONO.xlsx": "JulianTorrest/Inteligencia_Comercial/CO-EX-ABONO.xlsx",
-        "CO-EX-ABONOS-DETALLE.xlsx": "JulianTorrest/Inteligencia_Comercial/Abonos/CO-EX-ABONOS-DETALLE.xlsx",
-        "CO-EX-ABONOS-EMPRESAS.xlsx": "JulianTorrest/Inteligencia_Comercial/Abonos/CO-EX-ABONOS-EMPRESAS.xlsx",
-        "CO-EX-ABONOS-MES.xlsx": "JulianTorrest/Inteligencia_Comercial/Abonos/CO-EX-ABONOS-MES.xlsx",
-    }
+# Aplicación principal de Streamlit
+def main():
+    # Título y subtítulos
+    st.title("Inteligencia Comercial")
+    st.subheader("Abono")
+    st.subheader("Exportaciones - Colombia")
+
+    # Cargar datos
+    token = "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"
+    datasets = load_data(token)
     
-    for file_name, repo_path in file_options.items():
-        st.subheader(f"Datos de {file_name}")
-        content = get_csv_from_github(token, repo_path)
-        if content:
-            data = pd.read_excel(content, engine='openpyxl')
-            st.write(data)
+    # Desplegar datos
+    for name, df in datasets.items():
+        st.write(f"### {name}")
+        st.write(df)
 
 if __name__ == "__main__":
-    load_data()
+    main()
 
