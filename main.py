@@ -21,11 +21,11 @@ def load_data():
     token = "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"
 
     file_options = {
-        "CO-EX-ABONO-SALIDA.xlsx": "JulianTorrest/Inteligencia_Comercial/contents/Abonos/CO-EX-ABONO-SALIDA.xlsx",
-        "CO-EX-ABONO.xlsx": "JulianTorrest/Inteligencia_Comercial/contents/Abonos/CO-EX-ABONO.xlsx",
-        "CO-EX-ABONOS-DETALLE.xlsx": "JulianTorrest/Inteligencia_Comercial/contents/Abonos/CO-EX-ABONOS-DETALLE.xlsx",
-        "CO-EX-ABONOS-EMPRESAS.xlsx": "JulianTorrest/Inteligencia_Comercial/contents/Abonos/CO-EX-ABONOS-EMPRESAS.xlsx",
-        "CO-EX-ABONOS-MES.xlsx": "JulianTorrest/Inteligencia_Comercial/contents/Abonos/CO-EX-ABONOS-MES.xlsx",
+        "CO-EX-ABONO-SALIDA.xlsx": "JulianTorrest/Inteligencia_Comercial/Abonos/CO-EX-ABONO-SALIDA.xlsx",
+        "CO-EX-ABONO.xlsx": "JulianTorrest/Inteligencia_Comercial/contents/CO-EX-ABONO.xlsx",
+        "CO-EX-ABONOS-DETALLE.xlsx": "JulianTorrest/Inteligencia_Comercial/Abonos/CO-EX-ABONOS-DETALLE.xlsx",
+        "CO-EX-ABONOS-EMPRESAS.xlsx": "JulianTorrest/Inteligencia_Comercial/Abonos/CO-EX-ABONOS-EMPRESAS.xlsx",
+        "CO-EX-ABONOS-MES.xlsx": "JulianTorrest/Inteligencia_Comercial/Abonos/CO-EX-ABONOS-MES.xlsx",
     }
     
     for file_name, repo_path in file_options.items():
