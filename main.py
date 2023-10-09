@@ -38,7 +38,7 @@ def main():
     st.subheader("Exportaciones - Colombia")
 
     # Cargar datos
-    token = "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"
+    token = "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"
     datasets = load_data(token)
     
     # Desplegar datos
