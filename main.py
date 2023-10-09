@@ -18,14 +18,17 @@ def get_csv_from_github(token, repo_path):
 def load_data():
     st.title("Visualizador de Archivos de Excel desde GitHub")
 
-    token = st.text_input("Introduce tu token de GitHub:", type="password")
+    token = st.text_input("Introduce tu token de GitHub:", type="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")
     if not token:
         st.warning("Por favor, introduce tu token de GitHub.")
         return
 
     file_options = {
         "CO-EX-ABONO-SALIDA.xlsx": "JulianTorrest/Inteligencia_Comercial/contents/Abonos/CO-EX-ABONO-SALIDA.xlsx",
-        # ... otros archivos
+        "CO-EX-ABONO.xlsx": "JulianTorrest/Inteligencia_Comercial/blob/main/Abonos/CO-EX-ABONO.xlsx",
+        "CO-EX-ABONOS-DETALLE.xlsx": "JulianTorrest/Inteligencia_Comercial/blob/main/Abonos/CO-EX-ABONOS-DETALLE.xlsx",
+        "CO-EX-ABONOS-EMPRESAS.xlsx": "JulianTorrest/Inteligencia_Comercial/blob/main/Abonos/CO-EX-ABONOS-EMPRESAS.xlsx",
+        "CO-EX-ABONOS-MES.xlsx": "JulianTorrest/Inteligencia_Comercial/blob/main/Abonos/CO-EX-ABONOS-MES.xlsx",
     }
     
     selected_file = st.selectbox("Selecciona el archivo que deseas visualizar", list(file_options.keys()))
