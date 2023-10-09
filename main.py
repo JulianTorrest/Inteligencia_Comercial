@@ -17,7 +17,7 @@ def get_csv_from_github(token, repo_path):
 def load_data():
     st.title("Inteligencia Comercial, sector Abonos. Exportación del año 2023.")
 
-    # Introduce tu token válido aquí o considera una forma segura de almacenar y recuperar el token.
+    # Usa una forma segura para almacenar y recuperar el token en lugar de codificarlo directamente.
     token = "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"
 
     file_options = {
@@ -37,3 +37,4 @@ def load_data():
 
 if __name__ == "__main__":
     load_data()
+
