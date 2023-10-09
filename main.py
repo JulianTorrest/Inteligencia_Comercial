@@ -4,31 +4,30 @@ import requests
 from io import StringIO
 
 # Función para obtener datos CSV de GitHub
-def get_csv_from_github(token, repo_path):
+def get_csv_from_url(token, url):
     headers = {"Authorization": f"token {token}"}
-    url = f"https://raw.githubusercontent.com/{repo_path}"
     response = requests.get(url, headers=headers)
     
     if response.status_code == 200:
         return pd.read_csv(StringIO(response.text))
     else:
-        st.error(f"Error obteniendo el archivo {repo_path}. Código de error: {response.status_code}")
+        st.error(f"Error obteniendo el archivo desde {url}. Código de error: {response.status_code}")
         return None
 
 # Función para cargar todos los datos
 def load_data(token):
-    base_path = "JulianTorrest/Inteligencia_Comercial/main/Abonos"
-    files = [
-        "CO-EX-ABONO-SALIDA.csv",
-        "CO-EX-ABONO.csv",
-        "CO-EX-ABONOS-DETALLE.csv",
-        "CO-EX-ABONOS-EMPRESAS.csv",
-        "CO-EX-ABONOS-MES.csv"
+    urls = [
+        "https://raw.githubusercontent.com/JulianTorrest/Inteligencia_Comercial/main/Abonos/CO-EX-ABONO-SALIDA.csv",
+        "https://raw.githubusercontent.com/JulianTorrest/Inteligencia_Comercial/main/Abonos/CO-EX-ABONO.csv",
+        "https://raw.githubusercontent.com/JulianTorrest/Inteligencia_Comercial/main/Abonos/CO-EX-ABONOS-DETALLE.csv",
+        "https://raw.githubusercontent.com/JulianTorrest/Inteligencia_Comercial/main/Abonos/CO-EX-ABONOS-EMPRESAS.csv",
+        "https://raw.githubusercontent.com/JulianTorrest/Inteligencia_Comercial/main/Abonos/CO-EX-ABONOS-MES.csv"
     ]
 
     data = {}
-    for file in files:
-        data[file] = get_csv_from_github(token, f"{base_path}/{file}")
+    for url in urls:
+        filename = url.split("/")[-1]
+        data[filename] = get_csv_from_url(token, url)
     return data
 
 # Aplicación principal de Streamlit
